@@ -19,11 +19,6 @@ static void logx(const char* input) {
     }
 }
 
-/* фрактальная формула (\логистическое отображение) */
-static double fractal_step(double x) {
-    return 3.9 * x * (1.0 - x);
-}
-
 void open_device() {
     logx("before open");
 
@@ -39,13 +34,13 @@ void open_device() {
 void shake_it() {
     logx("test one two th");
 
-    double x = 0.5;
-
     for (;;) { /* бесконечный цикл */
         for (int i = 0; i < BUFFER_SIZE; i++) {
-            x = fractal_step(x);
-            buffer[i] = (int16_t)((x - 0.5) * 6000); /* звук от фрактала */ //nice
+
+            buffer[i] = i ^ 2 - i*2;
+
         }
+
         int resw = write(output_device, buffer, sizeof(buffer));
         if(!resw) {
             exit(0);
