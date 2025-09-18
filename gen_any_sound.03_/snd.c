@@ -5,11 +5,19 @@
 #include <stdint.h>
 #include <math.h>
 
+#define LOG_ENABLED 1
+
 #define SAMPLE_RATE 8000       /* проще — 8 kHz, поддерживается везде */
 #define BUFFER_SIZE 256        /* маленький фиксированный буфер */
 
 static int16_t buffer[BUFFER_SIZE];
 static int output_device = -1;   // od    .          .
+
+static void logx(const char* input) {
+    if(LOG_ENABLED) {
+        printf("%s\n", input);
+    }
+}
 
 /* фрактальная формула (\логистическое отображение) */
 static double fractal_step(double x) {
@@ -17,14 +25,20 @@ static double fractal_step(double x) {
 }
 
 void open_device() {
+    logx("before open");
+
     output_device = open("/dev/dsp", O_WRONLY);
-    if (! output_device) {
+    if (output_device < 0) {
         perror("open /dev/dsp");  // moe telik.0.
         exit(3);
     }
+
+    logx("after open");
 }
 
 void shake_it() {
+    logx("test one two th");
+
     double x = 0.5;
 
     for (;;) { /* бесконечный цикл */
@@ -33,7 +47,9 @@ void shake_it() {
             buffer[i] = (int16_t)((x - 0.5) * 6000); /* звук от фрактала */ //nice
         }
         int resw = write(output_device, buffer, sizeof(buffer));
-        exit(resw);
+        if(!resw) {
+            exit(0);
+        }
     }
 }
 
