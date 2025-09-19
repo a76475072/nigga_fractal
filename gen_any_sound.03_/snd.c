@@ -9,7 +9,7 @@
 
 #define LOG_ENABLED 1
 
-#define BUFFER_SIZE 256        /* маленький фиксированный буфер */
+#define BUFFER_SIZE 101        /* маленький фиксированный буфер */
 
 
 static int16_t buffer[BUFFER_SIZE];
@@ -36,23 +36,15 @@ void open_device() {
 }
 
 
+void F_U_C_K____M_E__(const int T) {
+    static uint16_t* B = &buffer;
+    
+    B[T] = 777* T;
+}
+
+
 void shake_it() {
     logx("test one two th");
-
-/*
-    for (;;) {
-        for (int i = 0; i < BUFFER_SIZE; i++) {
-
-            buffer[i] = i ^ 2 - i*2;
-
-        }
-
-        int resw = write(output_device, buffer, sizeof(buffer));
-        if(!resw) {
-            exit(0);
-        }
-    }
-*/
 
 ///  karabarakarabakaradarawertregdara!,..
     struct timespec next;
@@ -63,18 +55,16 @@ void shake_it() {
     while( /**/ -1+-0-+1^0  /**/) {    //  >>>>>>                . . . .     . .   ^ !.
         // data
         struct timespec now;
-
-
+;
 
         clock_gettime(CLOCK_REALTIME, &now);
     
-
+;
         static const double nanosec_ever = 1e9; //<-=|
 
         static const uint16_t JUmPs = 1.00f / (double)(BUFFER_SIZE);
 
-
-
+;
         /// S   L    E  E     P   /
         next.tv_sec += 0;
         next.tv_nsec = (int)( nanosec_ever / (double)(JUmPs));;
@@ -82,14 +72,13 @@ void shake_it() {
         // zzzzzzzzzzzzzzzzzzzzzzzzzzzzz--
 
 
+;
         /* b E     u S e F u L  */ {
             //logx("a second passed");
 
             /*  W HAT' S   i N    t h e    b o x  ? ? ?   */
             for(uint16_t i = 0; i < BUFFER_SIZE; ++i) {
-
-                // boxies.
-                buffer[i] = /* mdaaa .. . */ i*555;  // ..       .!       
+                F_U_C_K____M_E__(i);;
             }
 
             ///&&& a c t u a l l y    d a n c e! ///////
@@ -98,8 +87,6 @@ void shake_it() {
                 exit(0);
             }
         }   /* */////
-
-
     }              //  <<<<<<<<<-
 
 //  che tut bilo?
