@@ -26,7 +26,7 @@ static void logx(const char* input) {
 void open_device() {
     logx("before open");
 
-    output_device = open("/dev/dsp", O_WRONLY);
+    output_device = open("/dev/dsp", O_WRONLY);    // iuda
     if (output_device < 0) {
         perror("open /dev/dsp");  // moe telik.0.
         exit(3);
