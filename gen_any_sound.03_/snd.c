@@ -12,6 +12,12 @@
 #define BUFFER_SIZE 101        /* маленький фиксированный буфер */
 
 
+struct AUdi_oPrOceSSInG_Kontext {
+    int button;
+    int state;
+};
+
+
 static int16_t buffer[BUFFER_SIZE];
 static int output_device = -1;   // od    .          .
 
@@ -36,6 +42,11 @@ void open_device() {
 }
 
 
+void ACCEPT_GAMEPAD_INPUT (   )  {
+
+
+}
+
 void F_U_C_K____M_E__(const int T) {
     static uint16_t* B = &buffer;
     
@@ -53,9 +64,18 @@ void shake_it() {
     logx("before while");
 
     while( /**/ -1+-0-+1^0  /**/) {    //  >>>>>>                . . . .     . .   ^ !.
-        // data
+
+;       ;
+    // ---------
+
+        ACCEPT_GAMEPAD_INPUT  (   )   ;
+
+    // ------------------------ >>  ->
+
+;          ;
+
+    // _______________
         struct timespec now;
-;
 
         clock_gettime(CLOCK_REALTIME, &now);
     
