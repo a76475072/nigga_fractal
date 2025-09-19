@@ -9,7 +9,6 @@
 
 #define LOG_ENABLED 1
 
-#define SAMPLE_RATE 8000       /* проще — 8 kHz, поддерживается везде */
 #define BUFFER_SIZE 256        /* маленький фиксированный буфер */
 
 
@@ -70,22 +69,27 @@ void shake_it() {
         clock_gettime(CLOCK_REALTIME, &now);
     
 
+        static const double nanosec_ever = 1e9; //<-=|
+
+        static const uint16_t JUmPs = 1.00f / (double)(BUFFER_SIZE);
+
+
 
         /// S   L    E  E     P   /
-        next.tv_sec += 1;
-        next.tv_nsec = 0;
+        next.tv_sec += 0;
+        next.tv_nsec = (int)( nanosec_ever / (double)(JUmPs));;
         clock_nanosleep(CLOCK_REALTIME, TIMER_ABSTIME, &next, NULL);
         // zzzzzzzzzzzzzzzzzzzzzzzzzzzzz--
 
 
         /* b E     u S e F u L  */ {
-            logx("1 second passed");
+            //logx("a second passed");
 
             /*  W HAT' S   i N    t h e    b o x  ? ? ?   */
             for(uint16_t i = 0; i < BUFFER_SIZE; ++i) {
 
                 // boxies.
-                buffer[i] = /* mdaaa .. . */ i*i+i-(i>>1)+69;  // ..       .!       
+                buffer[i] = /* mdaaa .. . */ i*555;  // ..       .!       
             }
 
             ///&&& a c t u a l l y    d a n c e! ///////
